@@ -1,0 +1,23 @@
+{
+  "name": "Melody",
+  "short_name": "Melody",
+  "description": "سرویس استریم موسیقی",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#0f1412",
+  "theme_color": "#0f1412",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

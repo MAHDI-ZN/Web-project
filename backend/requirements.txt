@@ -1,0 +1,11 @@
+Django>=5.0,<5.3
+djangorestframework>=3.15
+djangorestframework-simplejwt>=5.3
+djangorestframework-camel-case>=1.4
+django-cors-headers>=4.4
+Pillow>=10.0
+requests>=2.31
+gunicorn>=22.0
+pytest>=8.0
+pytest-django>=4.8
+python-dotenv>=1.0

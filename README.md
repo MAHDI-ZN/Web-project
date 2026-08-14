@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Melody
 
-## Getting Started
+سرویس استریم موسیقی شبیه اسپاتیفای برای درس برنامه‌سازی وب (دانشگاه صنعتی شریف).
 
-First, run the development server:
+فاز ۱: فرانت‌اند Next.js — فاز ۲: بک‌اند Django REST و ادغام.
+
+## اجرا محلی
+
+### بک‌اند
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py seed
+python manage.py runserver 8000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+API: [http://localhost:8000/api/](http://localhost:8000/api/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### فرانت‌اند
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# از ریشه پروژه
+copy .env.example .env.local
+npm install
+npm run dev
+```
 
-## Learn More
+مرورگر: [http://localhost:3000](http://localhost:3000)
 
-To learn more about Next.js, take a look at the following resources:
+## Docker
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+docker compose up --build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+فرانت روی پورت ۳۰۰۰ و بک‌اند روی ۸۰۰۰ بالا می‌آید.
 
-## Deploy on Vercel
+## حساب‌های دمو
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+رمز همه: `demo1234`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| ایمیل | نقش |
+|--------|------|
+| sara@demo.com | شنونده پایه |
+| ali@demo.com | شنونده نقره‌ای |
+| nima@demo.com | شنونده طلایی |
+| ava@demo.com | هنرمند تأییدشده |
+| kaveh@demo.com | هنرمند در انتظار تأیید |
+| support@demo.com | پشتیبان |
+| admin@demo.com | مدیر سامانه |
+
+## پرداخت
+
+به صورت پیش‌فرض درگاه `mock` فعال است (بدون نیاز به اینترنت). برای زرین‌پال سندباکس:
+
+```
+PAYMENT_GATEWAY=zarinpal
+ZARINPAL_SANDBOX=1
+ZARINPAL_MERCHANT_ID=...
+```
+
+## تست‌ها
+
+```bash
+# فرانت
+npm test
+
+# بک‌اند
+cd backend
+python -m pytest
+```
+
+## ساختار
+
+- `src/` — Next.js (App Router)
+- `backend/` — Django + DRF
+- `docker-compose.yml` — اجرای هر دو سرویس
+- `REPORT.md` — گزارش نهایی فاز ۲
+
+قیمت اشتراک نقره‌ای/طلایی از پنل مدیر بدون تغییر کد عوض می‌شود.

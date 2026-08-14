@@ -1,0 +1,32 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_DEBUG: "1"
+      DJANGO_SECRET_KEY: melody-docker-secret
+      ALLOWED_HOSTS: "*"
+      FRONTEND_URL: http://localhost:3000
+      CORS_ALLOWED_ORIGINS: http://localhost:3000
+      PAYMENT_GATEWAY: mock
+      SQLITE_PATH: /app/data/db.sqlite3
+    volumes:
+      - backend_data:/app/data
+      - backend_media:/app/media
+
+  frontend:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+
+volumes:
+  backend_data:
+  backend_media:
